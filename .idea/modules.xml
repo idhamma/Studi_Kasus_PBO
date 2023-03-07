@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/Studi Kasus.iml" filepath="$PROJECT_DIR$/Studi Kasus.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Studi_Kasus_PBO.iml" filepath="$PROJECT_DIR$/Studi_Kasus_PBO.iml" />
+>>>>>>> origin/master
     </modules>
   </component>
 </project>
