@@ -170,4 +170,34 @@ public class Karyawan {
         System.out.println("ID\t\t\t\t\t:"+id);
         System.out.println("======================================");
     }
+
+
+    //method listPekerjaan dibuat karena macam-macam dari pekerjaan sudah ditentukan dan tidak boleh ditambah/dikurangi lagi
+    public String listPekerjaan(){
+        String jabatan=null;
+        int opsiJabatan=0;
+        System.out.println("Pilih jabatan dibawah ini");
+        System.out.println("            1. Dokter Hewan");
+        System.out.println("            2. Admin");
+        System.out.println("            3. Groomer");
+        do {
+            System.out.print("Opsi pekerjaan\t\t:");
+            opsiJabatan = scan.nextInt();
+            scan.nextLine();
+
+            if (opsiJabatan == 1) {
+                jabatan = "Dokter Hewan";
+                break;
+            } if (opsiJabatan == 2) {
+                jabatan = "Admin";
+                break;
+            } if (opsiJabatan==3){
+                jabatan = "Groomer";
+                break;
+            }
+            System.out.println("opsi pilihan tidak ada, silahkan input kembali sesuai opsi");
+        }while (true);
+
+        return jabatan;
+    }
 }
