@@ -205,18 +205,16 @@ public class Karyawan {
 
             if (opsiJabatan == 1) {
                 jabatan = "Dokter Hewan";
+                break;
             } if (opsiJabatan == 2) {
                 jabatan = "Admin";
+                break;
             } if (opsiJabatan==3){
                 jabatan = "Groomer";
+                break;
             }
-            if (opsiJabatan!=1 && opsiJabatan!=2 && opsiJabatan!=3){
-                System.out.println("opsi pilihan tidak ada, silahkan input kembali sesuai opsi");
-            } else {
-                System.out.println(jabatan);
-                this.gaji = hitungGaji(jabatan);
-            }
-        }while (opsiJabatan!=1 && opsiJabatan!=2 && opsiJabatan!=3);
+            System.out.println("opsi pilihan tidak ada, silahkan input kembali sesuai opsi");
+        }while (true);
 
         return jabatan;
     }

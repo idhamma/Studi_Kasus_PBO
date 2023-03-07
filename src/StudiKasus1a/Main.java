@@ -7,13 +7,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         ArrayList<Karyawan> listKaryawan = new ArrayList<>();
-        Karyawan karyawan = new Karyawan();
 
         int opsiMenu;
         int jumlah=0;
 
         //Menu utama Aplikasi
         do {
+            Karyawan karyawan = new Karyawan();
+
             System.out.println("Pet-House Apps");
             System.out.println("Menu");
             System.out.println("1. Isi data Karyawan");
