@@ -1,6 +1,8 @@
 package StudiKasus1a;
 
+import java.util.Locale;
 import java.util.Scanner;
+import java.text.NumberFormat;
 
 public class Karyawan {
 
@@ -11,15 +13,20 @@ public class Karyawan {
     private String Kategori;
     private String umur;
     private String jabatan;
+    private int gajiDefault = 3100000;
+    //default gaji berdasarkan UMK Kota Malang
+
     private String gaji;
     private String tanggalLahir;
     private String email;
     private String statusPernikahan;
     private String pendidikan;
     private String id;
+    NumberFormat separator = NumberFormat.getNumberInstance(Locale.GERMANY); // berfungsi untuk memberikan separator/pemisah diantara satuan ribuan
+
 
     Scanner scan = new Scanner(System.in);
-    Karyawan(){
+    public Karyawan(){
 
     }
 
@@ -80,6 +87,7 @@ public class Karyawan {
     }
 
     public String getGaji() {
+        gaji = separator.format(gajiDefault);
         return gaji;
     }
 
@@ -129,29 +137,27 @@ public class Karyawan {
 
     public void setData(){
         System.out.print("Nama\t\t\t\t:");
-        nama = scan.nextLine();
+        this.nama = scan.nextLine();
         System.out.print("Alamat\t\t\t\t:");
-        alamat = scan.nextLine();
+        this.alamat = scan.nextLine();
         System.out.print("No Telepon\t\t\t:");
-        noTelp = scan.nextLine();
+        this.noTelp = scan.nextLine();
         System.out.print("Jenis Kelamin\t\t:");
-        jk = scan.nextLine();
+        this.jk = scan.nextLine();
         System.out.print("Umur\t\t\t\t:");
-        umur = scan.nextLine();
-        System.out.print("Jabatan\t\t\t\t:");
-        jabatan = scan.nextLine();
-        System.out.print("Gaji\t\t\t\t:");
-        gaji = scan.nextLine();
+        this.umur = scan.nextLine();
+        System.out.println("Jabatan\t\t\t\t:");
+        this.jabatan = listPekerjaan();
         System.out.print("Tanggal lahir\t\t:");
-        tanggalLahir = scan.nextLine();
+        this.tanggalLahir = scan.nextLine();
         System.out.print("Email\t\t\t\t:");
-        email = scan.nextLine();
+        this.email = scan.nextLine();
         System.out.print("Status Pernikahan\t:");
-        statusPernikahan = scan.nextLine();
+        this.statusPernikahan = scan.nextLine();
         System.out.print("Pendidikan\t\t\t:");
-        pendidikan = scan.nextLine();
+        this.pendidikan = scan.nextLine();
         System.out.print("ID\t\t\t\t\t:");
-        id = scan.nextLine();
+        this.id = scan.nextLine();
     }
 
     public void print(){
@@ -162,12 +168,56 @@ public class Karyawan {
         System.out.println("Jenis Kelamin\t\t:"+jk);
         System.out.println("Umur\t\t\t\t:"+umur);
         System.out.println("Jabatan\t\t\t\t:"+jabatan);
-        System.out.println("Gaji\t\t\t\t:"+gaji);
+        System.out.printf("Gaji\t\t\t\t:Rp%s,-\n",gaji);
         System.out.println("Tanggal lahir\t\t:"+tanggalLahir);
         System.out.println("Email\t\t\t\t:"+email);
         System.out.println("Status Pernikahan\t:"+statusPernikahan);
         System.out.println("Pendidikan\t\t\t:"+pendidikan);
         System.out.println("ID\t\t\t\t\t:"+id);
         System.out.println("======================================");
+    }
+    String hitungGaji(String jabatan){
+        if (jabatan.equals("Dokter Hewan")){
+            gajiDefault*=3;
+        }
+        else if (jabatan.equals("Admin")){
+            gajiDefault*=1.7;
+        }
+        else if (jabatan.equals("Groomer")){
+            gajiDefault*=1.3;
+        }
+        gaji = separator.format(gajiDefault);
+        return gaji;
+    }
+
+    //method listPekerjaan dibuat karena macam-macam dari pekerjaan sudah ditentukan dan tidak boleh ditambah/dikurangi lagi
+    public String listPekerjaan(){
+        String jabatan=null;
+        int opsiJabatan=0;
+        System.out.println("Pilih jabatan dibawah ini");
+        System.out.println("            1. Dokter Hewan");
+        System.out.println("            2. Admin");
+        System.out.println("            3. Groomer");
+        do {
+            System.out.print("Opsi pekerjaan\t\t:");
+            opsiJabatan = scan.nextInt();
+            scan.nextLine();
+
+            if (opsiJabatan == 1) {
+                jabatan = "Dokter Hewan";
+            } if (opsiJabatan == 2) {
+                jabatan = "Admin";
+            } if (opsiJabatan==3){
+                jabatan = "Groomer";
+            }
+            if (opsiJabatan!=1 && opsiJabatan!=2 && opsiJabatan!=3){
+                System.out.println("opsi pilihan tidak ada, silahkan input kembali sesuai opsi");
+            } else {
+                System.out.println(jabatan);
+                this.gaji = hitungGaji(jabatan);
+            }
+        }while (opsiJabatan!=1 && opsiJabatan!=2 && opsiJabatan!=3);
+
+        return jabatan;
     }
 }
